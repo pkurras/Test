@@ -10,16 +10,13 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Dices.Count == 4)
+        bool AllDicesStatic = true;
+        foreach (GameObject Dice in Dices)
         {
-            bool AllDicesStatic = true;
-            foreach (GameObject Dice in Dices)
-            {
-                if (!Dice.GetComponent<Rigidbody>().IsSleeping())
-                    AllDicesStatic = false;
-            }
-            GameReady = AllDicesStatic;
+            if (!Dice.GetComponent<Rigidbody>().IsSleeping())
+                AllDicesStatic = false;
         }
+        GameReady = AllDicesStatic;
 
         if (GameReady)
         {
