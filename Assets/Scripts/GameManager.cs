@@ -40,21 +40,21 @@ public class GameManager : MonoBehaviour
                 // Localspace right/left
                 if (Vector3.Dot(Dice.transform.right, Vector3.up) >= 0.9)
                 {
-                    Score += 3;
+                    Score += 4;
                 }
                 if (Vector3.Dot(-Dice.transform.right, Vector3.up) >= 0.9)
                 {
-                    Score += 4;
+                    Score += 3;
                 }
 
                 // Localspace up/dow
                 if (Vector3.Dot(Dice.transform.up, Vector3.up) >= 0.9)
                 {
-                    Score += 2;
+                    Score += 5;
                 }
                 if (Vector3.Dot(-Dice.transform.up, Vector3.up) >= 0.9)
                 {
-                    Score += 5;
+                    Score += 2;
                 }
             }
         }
