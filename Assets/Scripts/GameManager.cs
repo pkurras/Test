@@ -7,53 +7,72 @@ public class GameManager : MonoBehaviour
     public List<GameObject> Dices;
     public bool GameReady = false;
     public int Score = 0;
+    public float DiceFacingBias = 0.99f;
 
     void Update()
     {
-        bool AllDicesStatic = true;
+        Restart();
+
+        bool AllDicesResting = true;
+
         foreach (GameObject Dice in Dices)
         {
             if (!Dice.GetComponent<Rigidbody>().IsSleeping())
-                AllDicesStatic = false;
+                AllDicesResting = false;
         }
-        GameReady = AllDicesStatic;
 
-        if (GameReady)
+        GameReady = AllDicesResting;
+
+        if (AllDicesResting)
         {
-            Score = 0;
             // TODO: Show Score
             foreach (GameObject Dice in Dices)
             {
-                // Localspace forward/backward
-                if (Vector3.Dot(Dice.transform.forward, Vector3.up) >= 0.9)
+                if (Vector3.Dot(Dice.transform.forward, Vector3.up) >= DiceFacingBias)
                 {
                     Score += 1;
                 }
-                if (Vector3.Dot(-Dice.transform.forward, Vector3.up) >= 0.9)
+                else if (Vector3.Dot(-Dice.transform.forward, Vector3.up) >= DiceFacingBias)
                 {
                     Score += 6;
                 }
-
-                // Localspace right/left
-                if (Vector3.Dot(Dice.transform.right, Vector3.up) >= 0.9)
+                else if (Vector3.Dot(Dice.transform.right, Vector3.up) >= DiceFacingBias)
                 {
                     Score += 4;
                 }
-                if (Vector3.Dot(-Dice.transform.right, Vector3.up) >= 0.9)
+                else if (Vector3.Dot(-Dice.transform.right, Vector3.up) >= DiceFacingBias)
                 {
                     Score += 3;
                 }
-
-                // Localspace up/dow
-                if (Vector3.Dot(Dice.transform.up, Vector3.up) >= 0.9)
+                else if (Vector3.Dot(Dice.transform.up, Vector3.up) >= DiceFacingBias)
                 {
                     Score += 5;
                 }
-                if (Vector3.Dot(-Dice.transform.up, Vector3.up) >= 0.9)
+                else if (Vector3.Dot(-Dice.transform.up, Vector3.up) >= DiceFacingBias)
                 {
                     Score += 2;
                 }
+                else
+                {
+                    Debug.Log("Facing no side!");
+                    Restart();
+                    return;
+                }
             }
         }
+    }
+    void Restart()
+    {
+        GameReady = false;
+        Score = 0;
+    }
+
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }
