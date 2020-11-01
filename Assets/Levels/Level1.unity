@@ -670,6 +670,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c24ec2cca69724e810b0f35785663a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 567200341}
+  forward: 100
+  sideforce: 500
 --- !u!65 &567200340
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -708,7 +711,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d66f8beed6f90c548a249e521dfba1d4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.001289455
+      value: -0.0012894532
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d66f8beed6f90c548a249e521dfba1d4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -716,19 +719,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d66f8beed6f90c548a249e521dfba1d4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0018853461
+      value: 0.0018853463
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d66f8beed6f90c548a249e521dfba1d4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d66f8beed6f90c548a249e521dfba1d4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d66f8beed6f90c548a249e521dfba1d4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d66f8beed6f90c548a249e521dfba1d4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -793,6 +796,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c24ec2cca69724e810b0f35785663a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 650035728}
+  forward: 100
+  sideforce: 500
 --- !u!65 &650035727
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1222,6 +1228,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c24ec2cca69724e810b0f35785663a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 997853481}
+  forward: 100
+  sideforce: 500
 --- !u!65 &997853480
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1297,6 +1306,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c24ec2cca69724e810b0f35785663a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 1030491990}
+  forward: 100
+  sideforce: 500
 --- !u!1 &1107200890
 GameObject:
   m_ObjectHideFlags: 0
