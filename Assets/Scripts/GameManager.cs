@@ -1,14 +1,33 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
-
+using UnityEngine.UI;
+public class Player 
+{
+    public Player() 
+    { 
+        scoreboard = new List<int>();
+        name = "";
+    }
+    public string name;
+    public List<int> scoreboard;
+}
 public class GameManager : MonoBehaviour
 {
     public List<GameObject> Dices;
-    public List<int> ScoreList;
     public bool GameReady = false;
     public float DiceFacingBias = 0.99f;
+    public Dictionary<int, Player> PlayerDB;
+    private int PlayerCount = 0;
+    public InputField PlayerString;
+    private int CurrentPlayer;
 
+    private void Start()
+    {
+        PlayerDB = new Dictionary<int, Player>();
+        PlayerString.text = "Mr. X";
+        AddPlayer();
+    }
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -29,7 +48,10 @@ public class GameManager : MonoBehaviour
         {
             CalculateScore();
             GameReady = false;
+            CurrentPlayer++;
+            CurrentPlayer %= PlayerCount;
         }
+
     }
     void CalculateScore()
     {
@@ -67,7 +89,8 @@ public class GameManager : MonoBehaviour
                 return;
             }
         }
-        ScoreList.Add(Score);
+        PlayerDB[CurrentPlayer].scoreboard.Add(Score);
+        Debug.Log(PlayerDB[CurrentPlayer].name + "'s Score = " + PlayerDB[CurrentPlayer].scoreboard[PlayerDB[CurrentPlayer].scoreboard.Count-1]);
         RestartRound();
     }
     public void RestartRound()
@@ -80,7 +103,11 @@ public class GameManager : MonoBehaviour
     }
     public void RestartGame()
     {
-        ScoreList.Clear();
+        for (int i = 0; i < PlayerCount; i++) 
+        {
+            PlayerDB[i].scoreboard.Clear();
+        }
+        CurrentPlayer = 0;
         RestartRound();
     }
 
@@ -91,5 +118,12 @@ public class GameManager : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+    public void AddPlayer()
+    {
+        var Player = new Player();
+        Player.name = PlayerString.text;
+        PlayerDB.Add(PlayerCount, Player);
+        PlayerCount++;
     }
 }
